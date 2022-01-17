@@ -1,0 +1,6 @@
+splitwise
+requests
+json
+configparser
+logging
+datetime
