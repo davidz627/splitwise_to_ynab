@@ -29,7 +29,16 @@ def getSplitwiseExpenses(from_date, splitwise_user_id):
     s = Splitwise(splitwise_consumer_key,splitwise_consumer_secret,api_key=splitwise_api_key)
 
     current = s.getCurrentUser()
-    expenses = s.getExpenses(group_id = splitwiseGroupId, dated_after=from_date)
+    limit = 20
+    offset = 0
+    expenses = []
+    while True:
+        gotExpenses = s.getExpenses(group_id = splitwiseGroupId, dated_after=from_date, offset = offset, limit = limit)
+        print(gotExpenses)
+        if gotExpenses == None or len(gotExpenses) == 0:
+            break
+        offset += limit
+        expenses.extend(gotExpenses)
     parsedExpenses = []
     for expense in expenses:
         expenseUsers = expense.getUsers()

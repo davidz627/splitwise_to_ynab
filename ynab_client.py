@@ -39,7 +39,7 @@ class YNABClient(object):
             print (f"Successfully updated transactions {transactions}")
 
     def listTransactionsInAccount(self, accountId):
-        since_date = "2022-01-01"
+        since_date = "2022-06-01"
         url = self.BASE_URL + f"/budgets/{self.budgetID}/accounts/{accountId}/transactions?since_date={since_date}"
         headers = {
             "Authorization": f"Bearer {self.token}",
